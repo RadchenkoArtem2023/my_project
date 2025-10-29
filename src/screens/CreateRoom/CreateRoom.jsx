@@ -57,25 +57,26 @@ const CreateRoom = () => {
             <div className={styles.view6}>
               <div className={styles.column4}>
                 <div className={styles.rowView4}>
-                  <div className={styles.column5}>
-                    <span className={styles.text5}>
-                      Create Your Secret Nick Room
-                    </span>
-                    <span className={styles.text6}>
-                      Let the holiday magic begin! Set up your gift exchange in
-                      just a few steps.
-                    </span>
-                    <div className={styles.rowView5}>
-                      <span className={styles.text7}>Room name</span>
-                      <span className={styles.text8}>*</span>
+                  <div className={styles.column12}>
+                    <div className={styles.column5}>
+                      <span className={styles.text5}>
+                        Create Your Secret Nick Room
+                      </span>
+                      <span className={styles.text6}>
+                        Let the holiday magic begin! Set up your gift exchange
+                        in just a few steps.
+                      </span>
                     </div>
-                  </div>
-
-                  <div className={styles.column6}>
                     <img
                       src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/dwfvn54h_expires_30_days.png"
                       className={styles.image5}
                     />
+                  </div>
+                </div>
+                <div className={styles.rowView5}>
+                  <span className={styles.text7}>Room name</span>
+                  <span className={styles.text8}>*</span>
+                  <div className={styles.column6}>
                     <input
                       placeholder="Enter your room name"
                       value={input1}

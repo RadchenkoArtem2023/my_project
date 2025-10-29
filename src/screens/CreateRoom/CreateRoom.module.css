@@ -115,6 +115,9 @@
 .column11 {
   width: 338px;
 }
+.column12 {
+  display: flex;
+}
 
 .contain {
   align-items: flex-start;
