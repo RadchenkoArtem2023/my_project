@@ -1,9 +1,8 @@
-import { useState } from "react";
-import CreateRoom from "../CreateRoom/CreateRoom";
+import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 
 const LandingPage = () => {
-  const [showCreateRoom, setShowCreateRoom] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className={styles.contain}>
@@ -71,7 +70,7 @@ Be ready for the big gift exchange!`}
               <div>
                 <button
                   className={styles.view}
-                  onClick={() => setShowCreateRoom(true)}>
+                  onClick={() => navigate("/create-room")}>
                   <span className={styles.text3}>{"Create Your Room"}</span>
                 </button>
               </div>
