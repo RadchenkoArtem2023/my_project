@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./screens/LandingPage";
-import CreateRoom from "./screens/CreateRoom";
-import AddParticipantInfo from "./screens/AddParticipantInfo";
+import LandingPage from "./screens/LandingPage/LandingPage";
+import CreateRoom from "./screens/CreateRoom/CreateRoom";
+import AddParticipantInfo from "./screens/AddParticipantInfo/AddParticipantInfo";
 import "./App.css";
 
 function App() {

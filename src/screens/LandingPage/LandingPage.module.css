@@ -1,0 +1,345 @@
+.absoluteButton {
+  position: absolute;
+  bottom: -33px;
+  right: -104px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #d4e7d9;
+  border-radius: 16px;
+  border: 1px solid #76977e;
+  padding: 12px 24px;
+  box-shadow: 1px 1px 3px #0000000d;
+  text-align: left;
+}
+
+.absoluteImage {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1440px;
+  height: 68px;
+  object-fit: fill;
+}
+
+.absoluteImage2 {
+  position: absolute;
+  top: 0px;
+  right: 372px;
+  width: 114px;
+  height: 114px;
+  object-fit: fill;
+}
+
+.absoluteText {
+  position: absolute;
+  bottom: -110px;
+  right: -79px;
+  color: #0c0c0c;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  width: 596px;
+}
+
+.absoluteView {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #192d1e;
+  padding: 18px 120px;
+}
+
+.box {
+  flex: 1;
+  align-self: stretch;
+}
+
+.buttonRowView {
+  width: 213px;
+  display: flex;
+  align-items: center;
+  background: #fbeeee;
+  border-radius: 16px;
+  border: 1px solid #ebadad;
+  padding: 12px 24px;
+  margin-top: 37px;
+  margin-right: 208px;
+  gap: 12px;
+  box-shadow: 1px 1px 3px #0000000d;
+  text-align: left;
+}
+
+.buttonRowView2 {
+  width: 215px;
+  display: flex;
+  align-items: center;
+  background: #fbeeee;
+  border-radius: 16px;
+  border: 1px solid #ebadad;
+  padding: 12px 24px;
+  gap: 12px;
+  box-shadow: 1px 1px 3px #0000000d;
+  text-align: left;
+}
+
+.buttonRowView3 {
+  display: flex;
+  align-items: center;
+  background: #d4e7d9;
+  border-radius: 16px;
+  border: 1px solid #76977e;
+  padding: 11px 23px;
+  gap: 12px;
+  box-shadow: 1px 1px 3px #0000000d;
+  text-align: left;
+}
+
+.column {
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #fafafa, #d3e9fd);
+  gap: 9px;
+}
+
+.column2 {
+  width: 983px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.column3 {
+  width: 199px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 172px;
+  position: relative;
+}
+
+.column4 {
+  width: 102px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 161px;
+  position: relative;
+}
+
+.column5 {
+  width: 413px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 78px;
+}
+
+.column6 {
+  width: 584px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 292px;
+  position: relative;
+}
+
+.contain {
+  align-items: flex-start;
+  background: #ffffff;
+}
+
+.image {
+  width: 199px;
+  height: 260px;
+  object-fit: fill;
+}
+
+.image2 {
+  width: 32px;
+  height: 32px;
+  object-fit: fill;
+}
+
+.image3 {
+  width: 140px;
+  height: 140px;
+  margin-top: 97px;
+  object-fit: fill;
+}
+
+.image4 {
+  width: 102px;
+  height: 132px;
+  object-fit: fill;
+}
+
+.image5 {
+  width: 96px;
+  height: 96px;
+  object-fit: fill;
+}
+
+.image6 {
+  width: 114px;
+  height: 260px;
+  object-fit: fill;
+}
+
+.image7 {
+  width: 86px;
+  height: 86px;
+  margin-bottom: 62px;
+  margin-left: 218px;
+  object-fit: fill;
+}
+
+.image8 {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 57px;
+  margin-left: 29px;
+  object-fit: fill;
+}
+
+.image9 {
+  width: 584px;
+  height: 333px;
+  object-fit: fill;
+}
+
+.image10 {
+  width: 100px;
+  height: 100px;
+  margin-top: 55px;
+  object-fit: fill;
+}
+
+.rowView {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  gap: 44px;
+}
+
+.rowView2 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 114px;
+  margin-right: 65px;
+}
+
+.rowView3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rowView4 {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 40px;
+  margin-left: 86px;
+}
+
+.rowView5 {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 159px;
+}
+
+.rowView6 {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 11px;
+}
+
+.rowView7 {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.rowView8 {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rowView9 {
+  width: 203px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.text {
+  color: #414141;
+  font-size: 20px;
+}
+
+.text2 {
+  color: #414141;
+  font-size: 24px;
+  text-align: center;
+  width: 582px;
+}
+
+.text3 {
+  color: #fafafa;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.text4 {
+  color: #fafafa;
+  font-size: 14px;
+  margin-right: 723px;
+}
+
+.text5 {
+  color: #fafafa;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.view {
+  width: 281px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #2c5134;
+  border-radius: 32px;
+  padding: 16px 47px;
+  box-shadow: 0px 2px 0px #00000003;
+}
+
+.view2 {
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 1px;
+}
+
+.view3 {
+  width: 91px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 1px;
+}
