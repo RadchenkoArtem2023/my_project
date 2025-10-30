@@ -1,10 +1,52 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./AddParticipantInfo.module.css";
 
 const AddParticipantInfo = () => {
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
-  const [input3, setInput3] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // ✅ Дані, які прийшли з CreateRoom
+  const {
+    roomName = "",
+    minParticipants = "",
+    maxParticipants = "",
+    budget = "",
+    currency = "",
+  } = location.state || {};
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleContinue = () => {
+    navigate("/add-wishlist", {
+      state: {
+        roomName,
+        minParticipants,
+        maxParticipants,
+        budget,
+        currency,
+        firstName,
+        lastName,
+        email,
+        phone,
+      },
+    });
+  };
+
+  const handleBack = () => {
+    navigate("/create-room", {
+      state: {
+        roomName,
+        minParticipants,
+        maxParticipants,
+        budget,
+        currency,
+      },
+    });
+  };
 
   return (
     <div className={styles.contain}>
@@ -15,12 +57,18 @@ const AddParticipantInfo = () => {
               src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/eq069ud7_expires_30_days.png"
               className={styles.image}
             />
+
+            {/* ✅ Кнопка Назад */}
             <div className={styles.view}>
               <img
                 src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/ng6hfthk_expires_30_days.png"
                 className={styles.image2}
+                onClick={handleBack}
+                style={{ cursor: "pointer" }}
               />
             </div>
+
+            {/* === Далі без змін візуалу, тільки інпути прив’язано === */}
 
             <div className={styles.view2}>
               <div className={styles.rowView}>
@@ -56,6 +104,7 @@ const AddParticipantInfo = () => {
               </div>
             </div>
 
+            {/* === Форма даних користувача === */}
             <div className={styles.view5}>
               <div className={styles.column4}>
                 <div className={styles.rowView4}>
@@ -73,8 +122,8 @@ const AddParticipantInfo = () => {
                         </div>
                         <input
                           placeholder="e.g. Nickolas"
-                          value={input1}
-                          onChange={(e) => setInput1(e.target.value)}
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
                           className={styles.input}
                         />
                       </div>
@@ -86,8 +135,8 @@ const AddParticipantInfo = () => {
                         </div>
                         <input
                           placeholder="e.g. Secret"
-                          value={input2}
-                          onChange={(e) => setInput2(e.target.value)}
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                           className={styles.input}
                         />
                       </div>
@@ -95,33 +144,20 @@ const AddParticipantInfo = () => {
                   </div>
                 </div>
 
+                {/* Email + Phone */}
                 <div className={styles.column8}>
-                  <div className={styles.rowView7}>
-                    <span className={styles.text10}>0</span>
-                    <span className={styles.text11}>/</span>
-                    <span className={styles.text4}>40</span>
-                  </div>
-
-                  <div className={styles.rowView8}>
-                    <span className={styles.text10}>0</span>
-                    <span className={styles.text11}>/</span>
-                    <span className={styles.text4}>40</span>
-                  </div>
-
                   <div className={styles.rowView9}>
                     <div className={styles.column9}>
                       <div className={styles.rowView6}>
                         <span className={styles.text7}>Phone number</span>
                         <span className={styles.text8}>*</span>
                       </div>
-                      <div className={styles.rowView10}>
-                        <div className={styles.view6}>
-                          <span className={styles.text7}>+380</span>
-                        </div>
-                        <div className={styles.view7}>
-                          <span className={styles.text12}>77 777 77 77</span>
-                        </div>
-                      </div>
+                      <input
+                        placeholder="+380 77 777 77 77"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className={styles.input}
+                      />
                     </div>
 
                     <div className={styles.column6}>
@@ -130,49 +166,25 @@ const AddParticipantInfo = () => {
                       </div>
                       <input
                         placeholder="nickolas@example.com"
-                        value={input3}
-                        onChange={(e) => setInput3(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className={styles.input}
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className={styles.column10}>
-                  <div className={styles.rowView11}>
-                    <span className={styles.text13}>
-                      Your delivery address (no North Pole required!)
-                    </span>
-                    <span className={styles.text14}>*</span>
-                  </div>
-
-                  <div className={styles.column11}>
-                    <div className={styles.view9}>
-                      <span className={styles.text12}>
-                        Where should St. Nick deliver your gift?
-                      </span>
-                    </div>
-                    <img
-                      src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/vch3oclq_expires_30_days.png"
-                      className={styles.image7}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.rowView12}>
-                  <span className={styles.text10}>0</span>
-                  <span className={styles.text15}>/</span>
-                  <span className={styles.text4}>500</span>
-                </div>
-
+                {/* ✅ Кнопка Continue передає всі дані далі */}
                 <div className={styles.column12}>
-                  <button
-                    className={styles.button}
-                    onClick={() => alert("Pressed!")}>
+                  <button className={styles.button} onClick={handleContinue}>
                     <span className={styles.text16}>Continue</span>
                   </button>
 
-                  <div className={styles.rowView13}>
+                  {/* ✅ Back: дубль */}
+                  <div
+                    className={styles.rowView13}
+                    onClick={handleBack}
+                    style={{ cursor: "pointer" }}>
                     <img
                       src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/a0uylpdi_expires_30_days.png"
                       className={styles.image8}
@@ -186,23 +198,19 @@ const AddParticipantInfo = () => {
             </div>
           </div>
 
-          <img
-            src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/v7yflq6k_expires_30_days.png"
-            className={styles.absoluteImage}
-          />
-        </div>
-
-        <div className={styles.view10}>
-          <div className={styles.rowView11}>
-            <span className={styles.text18}>
-              © 2025 EPAM Systems. All rights reserved.
-            </span>
-            <div className={styles.rowView14}>
-              <div className={styles.view11}>
-                <span className={styles.text19}>Privacy Policy</span>
-              </div>
-              <div className={styles.view12}>
-                <span className={styles.text19}>Privacy Notice</span>
+          {/* Footer */}
+          <div className={styles.view10}>
+            <div className={styles.rowView11}>
+              <span className={styles.text18}>
+                © 2025 EPAM Systems. All rights reserved.
+              </span>
+              <div className={styles.rowView14}>
+                <div className={styles.view11}>
+                  <span className={styles.text19}>Privacy Policy</span>
+                </div>
+                <div className={styles.view12}>
+                  <span className={styles.text19}>Privacy Notice</span>
+                </div>
               </div>
             </div>
           </div>

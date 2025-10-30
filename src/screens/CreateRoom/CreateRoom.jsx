@@ -1,9 +1,45 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styles from "./CreateRoom.module.css";
+import { setRoomData } from "../../redux/roomSlice";
 
 const CreateRoom = () => {
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [roomName, setRoomName] = useState("");
+  const [roomDescription, setRoomDescription] = useState("");
+  const [roomDate, setRoomDate] = useState("");
+  const [roomBudget, setRoomBudget] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!roomName.trim()) newErrors.name = "Room name is required";
+    if (!roomDescription.trim()) newErrors.desc = "Description is required";
+    if (!roomDate) newErrors.date = "Date is required";
+    if (roomBudget === "") newErrors.budget = "Budget is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleContinue = () => {
+    if (!validateForm()) return;
+
+    dispatch(
+      setRoomData({
+        name: roomName,
+        description: roomDescription,
+        date: roomDate,
+        budget: Number(roomBudget),
+      })
+    );
+
+    navigate("/add-participant");
+  };
 
   return (
     <div className={styles.contain}>
@@ -21,6 +57,7 @@ const CreateRoom = () => {
               />
             </div>
 
+            {/* ✅ Breadcrumb steps залишили без змін */}
             <div className={styles.view2}>
               <div className={styles.rowView}>
                 <div className={styles.rowView2}>
@@ -56,6 +93,7 @@ const CreateRoom = () => {
 
             <div className={styles.view6}>
               <div className={styles.column4}>
+                {/* Заголовок */}
                 <div className={styles.rowView4}>
                   <div className={styles.column12}>
                     <div className={styles.column5}>
@@ -73,102 +111,118 @@ const CreateRoom = () => {
                     />
                   </div>
                 </div>
+
+                {/* ✅ Room name */}
                 <div className={styles.rowView5}>
                   <span className={styles.text7}>Room name</span>
                   <span className={styles.text8}>*</span>
                   <div className={styles.column6}>
                     <input
+                      maxLength={40}
                       placeholder="Enter your room name"
-                      value={input1}
-                      onChange={(e) => setInput1(e.target.value)}
+                      value={roomName}
+                      onChange={(e) => setRoomName(e.target.value)}
                       className={styles.absoluteInput}
                     />
+                    {errors.name && (
+                      <div className={styles.error}>{errors.name}</div>
+                    )}
                   </div>
                 </div>
 
-                <div className={styles.column7}>
-                  <div className={styles.rowView6}>
-                    <span className={styles.text9}>0</span>
-                    <span className={styles.text10}>/</span>
-                    <span className={styles.text3}>40</span>
-                  </div>
+                {/* Лічильник символів */}
+                <div className={styles.rowView6}>
+                  <span className={styles.text9}>{roomName.length}</span>
+                  <span className={styles.text10}>/</span>
+                  <span className={styles.text3}>40</span>
+                </div>
 
+                {/* ✅ Description */}
+                <div className={styles.column7}>
                   <div className={styles.column8}>
                     <div className={styles.rowView7}>
                       <span className={styles.text11}>Room description</span>
                       <span className={styles.text12}>*</span>
                     </div>
-
-                    <div className={styles.column9}>
-                      <div className={styles.view7}>
-                        <span className={styles.text13}>
-                          Enter your message here...
-                        </span>
-                      </div>
-                      <img
-                        src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/bkq5h82p_expires_30_days.png"
-                        className={styles.image6}
-                      />
-                    </div>
+                    <textarea
+                      maxLength={200}
+                      placeholder="Enter your message here..."
+                      value={roomDescription}
+                      onChange={(e) => setRoomDescription(e.target.value)}
+                      className={styles.textArea}
+                    />
+                    {errors.desc && (
+                      <div className={styles.error}>{errors.desc}</div>
+                    )}
                   </div>
                 </div>
 
-                <div className={styles.column10}>
-                  <div className={styles.rowView8}>
-                    <span className={styles.text9}>0</span>
-                    <span className={styles.text14}>/</span>
-                    <span className={styles.text3}>200</span>
-                  </div>
+                {/* Лічильник символів */}
+                <div className={styles.rowView8}>
+                  <span className={styles.text9}>{roomDescription.length}</span>
+                  <span className={styles.text14}>/</span>
+                  <span className={styles.text3}>200</span>
+                </div>
 
+                {/* ✅ Date + Budget */}
+                <div className={styles.column10}>
                   <div className={styles.rowView9}>
                     <div className={styles.column11}>
-                      <div className={styles.rowView10}>
-                        <span className={styles.text7}>Gift Exchange date</span>
-                        <span className={styles.text8}>*</span>
-                      </div>
-                      <div className={styles.rowView11}>
-                        <input
-                          placeholder="Select date"
-                          value={input2}
-                          onChange={(e) => setInput2(e.target.value)}
-                          className={styles.input}
-                        />
-                        <img
-                          src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/k23rlgzn_expires_30_days.png"
-                          className={styles.image7}
-                        />
-                      </div>
+                      <span className={styles.text7}>Gift Exchange date</span>
+                      <span className={styles.text8}>*</span>
+                      <input
+                        type="date"
+                        value={roomDate}
+                        onChange={(e) => setRoomDate(e.target.value)}
+                        className={styles.input}
+                      />
+                      {errors.date && (
+                        <div className={styles.error}>{errors.date}</div>
+                      )}
                     </div>
 
                     <div className={styles.column11}>
-                      <div className={styles.rowView10}>
-                        <span className={styles.text7}>Gift budget</span>
-                        <span className={styles.text8}>*</span>
-                      </div>
-                      <div className={styles.rowView12}>
-                        <div className={styles.view8}>
-                          <span className={styles.text13}>
-                            Type in your budget
-                          </span>
-                        </div>
-                        <div className={styles.view9}>
-                          <span className={styles.text7}>UAH</span>
-                        </div>
-                      </div>
-                      <div className={styles.view10}>
-                        <span className={styles.text15}>
-                          0 means unlimited budget
-                        </span>
-                      </div>
+                      <span className={styles.text7}>Gift budget</span>
+                      <span className={styles.text8}>*</span>
+                      <input
+                        type="number"
+                        min={0}
+                        placeholder="UAH"
+                        value={roomBudget}
+                        onChange={(e) => setRoomBudget(e.target.value)}
+                        className={styles.input}
+                      />
+                      {errors.budget && (
+                        <div className={styles.error}>{errors.budget}</div>
+                      )}
+                      <span className={styles.text15}>
+                        0 means unlimited budget
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <button
-                  className={styles.button}
-                  onClick={() => alert("Pressed!")}>
+                {/* ✅ Button */}
+                <button className={styles.button} onClick={handleContinue}>
                   <span className={styles.text16}>Continue</span>
                 </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ✅ Footer */}
+          <div className={styles.view11}>
+            <div className={styles.rowView7}>
+              <span className={styles.text17}>
+                © 2025 EPAM Systems. All rights reserved.
+              </span>
+              <div className={styles.rowView13}>
+                <div className={styles.view12}>
+                  <span className={styles.text18}>Privacy Policy</span>
+                </div>
+                <div className={styles.view13}>
+                  <span className={styles.text18}>Privacy Notice</span>
+                </div>
               </div>
             </div>
           </div>
@@ -177,22 +231,6 @@ const CreateRoom = () => {
             src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/aya8sehf_expires_30_days.png"
             className={styles.absoluteImage}
           />
-        </div>
-
-        <div className={styles.view11}>
-          <div className={styles.rowView7}>
-            <span className={styles.text17}>
-              © 2025 EPAM Systems. All rights reserved.
-            </span>
-            <div className={styles.rowView13}>
-              <div className={styles.view12}>
-                <span className={styles.text18}>Privacy Policy</span>
-              </div>
-              <div className={styles.view13}>
-                <span className={styles.text18}>Privacy Notice</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
