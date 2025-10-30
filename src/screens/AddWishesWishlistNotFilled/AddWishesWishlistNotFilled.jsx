@@ -21,6 +21,7 @@ const AddWishesWishlistNotFilled = () => {
   const [wishName, setWishName] = useState("");
   const [wishLink, setWishLink] = useState("");
   const [surprise, setSurprise] = useState("");
+  const [wishMode, setWishMode] = useState("ideas"); // додали стан для вибору
 
   const handleAddWish = () => {
     alert("Wish Added (поки тест)");
@@ -41,6 +42,7 @@ const AddWishesWishlistNotFilled = () => {
         wishName,
         wishLink,
         surprise,
+        wishMode, // передаємо вибір
       },
     });
   };
@@ -147,55 +149,73 @@ const AddWishesWishlistNotFilled = () => {
                       <span className={styles.text8}>
                         I have gift ideas! (add up to 5 gift ideas)
                       </span>
-                    </div>
-
-                    <div className={styles.rowView6}>
-                      <div className={styles.column9}>
-                        <div className={styles.rowView7}>
-                          <span className={styles.text9}>I wish for</span>
-                          <span className={styles.text10}>*</span>
-                        </div>
-                        <input
-                          className={styles.input}
-                          placeholder="Enter your wish name"
-                          value={wishName}
-                          onChange={(e) => setWishName(e.target.value)}
-                        />
-                      </div>
-
-                      <div className={styles.column10}>
-                        <span className={styles.text9}>Add link</span>
-                        <input
-                          className={styles.input}
-                          placeholder="E.g. https://example.com/item"
-                          value={wishLink}
-                          onChange={(e) => setWishLink(e.target.value)}
-                        />
-                      </div>
-                    </div>
-
-                    <button
-                      className={styles.buttonRowView}
-                      onClick={handleAddWish}>
-                      <img
-                        src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/7gquih4x_expires_30_days.png"
-                        className={styles.image8}
+                      <input
+                        type="radio"
+                        name="wishMode"
+                        value="ideas"
+                        checked={wishMode === "ideas"}
+                        onChange={() => setWishMode("ideas")}
+                        style={{ marginLeft: "10px" }}
                       />
-                      <span className={styles.text14}>Add Wish</span>
-                    </button>
-                  </div>
+                    </div>
 
-                  <div className={styles.rowView10}>
-                    <img
-                      src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/g5ugfdfz_expires_30_days.png"
-                      className={styles.image7}
-                    />
-                    <input
-                      className={styles.input2}
-                      placeholder="I want a surprise gift"
-                      value={surprise}
-                      onChange={(e) => setSurprise(e.target.value)}
-                    />
+                    <div className={styles.rowView10}>
+                      <img
+                        src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/g5ugfdfz_expires_30_days.png"
+                        className={styles.image7}
+                      />
+                      <span>I want a surprise gift</span>
+                      <input
+                        type="radio"
+                        name="wishMode"
+                        value="surprise"
+                        checked={wishMode === "surprise"}
+                        onChange={() => setWishMode("surprise")}
+                        style={{ marginLeft: "10px" }}
+                      />
+                    </div>
+
+                    {/* Відображення інпутів залежно від вибору */}
+                    {wishMode === "ideas" && (
+                      <div className={styles.rowView6}>
+                        <div className={styles.column9}>
+                          <div className={styles.rowView7}>
+                            <span className={styles.text9}>I wish for</span>
+                            <span className={styles.text10}>*</span>
+                          </div>
+                          <input
+                            className={styles.input}
+                            placeholder="Enter your wish name"
+                            value={wishName}
+                            onChange={(e) => setWishName(e.target.value)}
+                          />
+                        </div>
+
+                        <div className={styles.column10}>
+                          <span className={styles.text9}>Add link</span>
+                          <input
+                            className={styles.input}
+                            placeholder="E.g. https://example.com/item"
+                            value={wishLink}
+                            onChange={(e) => setWishLink(e.target.value)}
+                          />
+                        </div>
+                        <button
+                          className={styles.buttonRowView}
+                          onClick={handleAddWish}>
+                          <span className={styles.text14}>Add Wish</span>
+                        </button>
+                      </div>
+                    )}
+
+                    {wishMode === "surprise" && (
+                      <input
+                        className={styles.input2}
+                        placeholder="I want a surprise gift"
+                        value={surprise}
+                        onChange={(e) => setSurprise(e.target.value)}
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -208,10 +228,6 @@ const AddWishesWishlistNotFilled = () => {
                     className={styles.rowView11}
                     onClick={handleBack}
                     style={{ cursor: "pointer" }}>
-                    <img
-                      src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/gJ59Nxafgu/e2vw0c3b_expires_30_days.png"
-                      className={styles.image9}
-                    />
                     <span className={styles.text16}>
                       Back to the previous step
                     </span>
